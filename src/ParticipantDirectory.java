@@ -12,6 +12,7 @@ public class ParticipantDirectory {
     private final Map<String, Participant> usernameToParticipant;
 
     // TODO 1a: Declare a TreeMap to store participants with ID as key.
+    private TreeMap <Integer, Participant> idToParticipant;
 
 
     /**
@@ -21,7 +22,7 @@ public class ParticipantDirectory {
     public ParticipantDirectory() {
         // Create the TreeMap to store participants with username as key.
         this.usernameToParticipant = new TreeMap<>();
-
+        this.idToParticipant = new TreeMap<>();
         // TODO 1b: Create the TreeMap to store participants with ID as key.
 
     }
@@ -41,6 +42,7 @@ public class ParticipantDirectory {
 
         // TODO 2: Store the Participant, p, in the second TreeMap
         // TODO 2: using the idNumber attribute of p as key.
+        this.idToParticipant.put(p.idNumber, p);
 
     }
 
@@ -66,7 +68,8 @@ public class ParticipantDirectory {
     public Participant getParticipantByID(Integer idNumber) {
         // TODO 3: Return the Participant associated with the given idNumber
         // TODO 3: using the second TreeMap created in step 1.
-        return null;
+
+        return this.idToParticipant.get(idNumber);
     }
 
     /**
@@ -94,7 +97,12 @@ public class ParticipantDirectory {
     public String getRosterByID() {
         // TODO 4: Use the second TreeMap created in step 1 to build and return
         // TODO 4: return a String containing a participant roster sorted by ID.
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (Participant p : this.idToParticipant.values()) {
+            sb.append(p);
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
     /**
